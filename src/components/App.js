@@ -1,8 +1,7 @@
 import React from 'react';
 import LeagueList from './LeagueList';
 import TeamList from './TeamList';
-import NavLink from './NavLink';
-import { IndexLink } from 'react-router';
+import { IndexLink, Link } from 'react-router';
 
 
 class App extends React.Component {
@@ -16,7 +15,7 @@ class App extends React.Component {
         <h2>Soccer Things</h2>
         <ul role="nav">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-          <li><NavLink to="/leagues">Leagues</NavLink></li>
+          <li><Link to="/leagues">Leagues</Link></li>
         </ul>
         {this.props.children}
       </div>

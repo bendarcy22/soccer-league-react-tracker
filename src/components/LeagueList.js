@@ -7,10 +7,8 @@ class LeagueList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      leagues: [],
-      selectedLeagueId: null
+      leagues: []
     };
-    this.handleLeagueClick = this.handleLeagueClick.bind(this);
   };
 
   getLeagues() {
@@ -29,13 +27,6 @@ class LeagueList extends React.Component {
     this.getLeagues();
   };
 
-  handleLeagueClick(id) {
-    if(this.state.selectedLeagueId === null){
-      this.setState({ selectedLeagueId: id });
-    } else {
-      this.setState({ selectedLeagueId: null });
-    }
-  }
 
   render() {
     let allLeagues = this.state.leagues.map(league => {
@@ -43,8 +34,6 @@ class LeagueList extends React.Component {
         <League
           key={league.id}
           {...league}
-          selected={this.state.selectedLeagueId}
-          onClick={this.handleLeagueClick}
         />
       );
     });

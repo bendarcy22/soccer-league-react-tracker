@@ -5,47 +5,30 @@ import apiKey from './apiKey';
 class Team extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      players: []
-    }
+    this.onTeamClick = this.onTeamClick.bind(this);
+
   }
 
-  getTeamPlayers(url) {
-    $.ajax({
-      url: url,
-      beforeSend: (xhr) => {
-        xhr.setRequestHeader('X-Auth-Token', apiKey);
+  onTeamClick() {
+    this.context.router.push({
+      pathname: `/${this.props.name}/players`,
+      query: {
+        teamsPlayersURL: this.props._links.players.href
       }
     })
-    .done(data => {
-      this.setState({ players: data })
-    });
-  }
+  };
 
-  componentDidMount() {
-    this.getTeamPlayers(this.props._links.players.href);
-  }
 
   render() {
-    const { id, name, selected } = this.props;
-    const handleClick = () => this.props.onClick(id);
-    if(selected === id) {
-      return(
-        <li onClick={handleClick}>
-          {name}
-          <PlayerList
-            players={this.state.players}
-          />
-        </li>
-      )
-    } else {
-      return(
-        <li onClick={handleClick}>
-          {name}
-        </li>
-      )
-    }
+    var router = this.context.router;
+    return(
+      <li onClick={this.onTeamClick}>{this.props.name}</li>
+    )
   }
 }
+
+Team.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 
 export default Team;

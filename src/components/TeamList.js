@@ -1,39 +1,47 @@
 import React from 'react';
 import Team from './Team';
+import apiKey from './apiKey';
 
 class TeamList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTeamId: null
+      teams: []
     }
-    this.handleTeamClick = this.handleTeamClick.bind(this);
+  }
+  getLeagueTeams(url) {
+    $.ajax({
+      url: url,
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader('X-Auth-Token', apiKey);
+      }
+    })
+    .done(data => {
+      this.setState({ teams: data.teams })
+    });
+  };
 
-  }
-  handleTeamClick(id) {
-    if(this.state.selectedTeamId === null){
-      this.setState({ selectedTeamId: id });
-    } else {
-      this.setState({ selectedTeamId: null });
-    }
-  }
+  componentDidMount() {
+    this.getLeagueTeams(this.props.location.query.leaguesTeamsURL)
+  };
 
   render() {
-    let teams = this.props.teams.map(team => {
+    let teams = this.state.teams.map(team => {
       return (
         <Team
           key={team._links.self.href}
           {...team}
-          selected={this.state.selectedTeamId}
-          onClick={this.handleTeamClick}
         />
       );
     });
 
     return (
-      <ul>
-        {teams}
-      </ul>
+      <div>
+        <h1>{this.props.routeParams.caption}</h1>
+        <ul>
+          {teams}
+        </ul>
+      </div>
     );
   };
 };
