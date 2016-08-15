@@ -13,7 +13,8 @@ class League extends React.Component {
     this.context.router.push({
       pathname: `/${this.props.id}/teams`,
       query: {
-        leaguesTeamsURL: this.props._links.teams.href
+        leaguesTeamsURL: this.props._links.teams.href,
+        caption: this.props.caption
       }
     })
   };

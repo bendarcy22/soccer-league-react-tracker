@@ -39,7 +39,7 @@ class PlayerList extends React.Component {
 
     return (
       <div>
-        <h1>{this.props.routeParams.name}</h1>
+        <h1>{this.props.location.query.name}</h1>
         <ul>
           {players}
         </ul>

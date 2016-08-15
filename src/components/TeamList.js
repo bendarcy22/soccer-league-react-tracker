@@ -37,7 +37,7 @@ class TeamList extends React.Component {
 
     return (
       <div>
-        <h1>{this.props.routeParams.caption}</h1>
+        <h1>{this.props.location.query.caption}</h1>
         <ul>
           {teams}
         </ul>
