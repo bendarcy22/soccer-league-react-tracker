@@ -1,2 +1,3 @@
 # soccer-league-react-tracker
-Side Project to help me learn React
+Simple Project to help me learn React
+- incorporates football data api
