@@ -3,24 +3,25 @@ import LeagueList from './LeagueList';
 import TeamList from './TeamList';
 import { IndexLink, Link } from 'react-router';
 
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  };
-
-  render() {
-    return (
-      <div>
-        <h2>Soccer Things</h2>
-        <ul role="nav">
-          <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-          <li><Link to="/leagues">Leagues</Link></li>
-        </ul>
-        {this.props.children}
-      </div>
-    )
-  }
+const App = props => {
+  return (
+    <div>
+      <nav className="navbar navbar-inverse">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <p className="navbar-brand">Soccer Things</p>
+          </div>
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul className="nav navbar-nav">
+              <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+              <li><Link to="/leagues">Leagues</Link></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      {props.children}
+    </div>
+  )
 }
 
 export default App;

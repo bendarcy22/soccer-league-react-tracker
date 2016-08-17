@@ -1,16 +1,16 @@
 import React from 'react';
-import Team from './Team';
+import Fixture from './Fixture';
 import apiKey from './apiKey';
 
-class TeamList extends React.Component {
+class FixtureList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      teams: [],
-    };
-  };
+      fixtures: []
+    }
+  }
 
-  getLeagueTeams(url) {
+  getLeagueFixtures(url) {
     $.ajax({
       url: url,
       beforeSend: (xhr) => {
@@ -18,20 +18,20 @@ class TeamList extends React.Component {
       }
     })
     .done(data => {
-      this.setState({ teams: data.teams })
+      this.setState({ fixtures: data.fixtures })
     });
   };
 
   componentDidMount() {
-    this.getLeagueTeams(this.props.location.query.leaguesTeamsURL)
+    this.getLeagueFixtures(this.props.location.query.leaguesFixturesURL)
   };
 
   render() {
-    let teams = this.state.teams.map(team => {
+    let fixtures = this.state.fixtures.map(fixture => {
       return (
-        <Team
-          key={team._links.self.href}
-          {...team}
+        <Fixture
+          key={fixture._links.self.href}
+          {...fixture}
         />
       );
     });
@@ -39,13 +39,13 @@ class TeamList extends React.Component {
     return (
       <div>
         <h1>{this.props.location.query.caption}</h1>
-        <h3>Teams</h3>
+        <h3>Fixtures</h3>
         <ul>
-          {teams}
+          {fixtures}
         </ul>
       </div>
     );
   };
 };
 
-export default TeamList;
+export default FixtureList;

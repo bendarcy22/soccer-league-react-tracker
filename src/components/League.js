@@ -6,6 +6,7 @@ class League extends React.Component {
   constructor(props) {
     super(props);
     this.onLeagueClick = this.onLeagueClick.bind(this);
+    this.onFixtureClick = this.onFixtureClick.bind(this);
   };
 
 
@@ -18,12 +19,24 @@ class League extends React.Component {
       }
     })
   };
+  onFixtureClick() {
+    this.context.router.push({
+      pathname: `/${this.props.id}/fixtures`,
+      query: {
+        leaguesFixturesURL: this.props._links.fixtures.href,
+        caption: this.props.caption
+      }
+    })
+  };
 
 
   render() {
     var router = this.context.router;
     return(
-      <li onClick={this.onLeagueClick}>{this.props.caption}</li>
+      <div>
+        <li onClick={this.onLeagueClick}>{this.props.caption}</li>
+        <span onClick={this.onFixtureClick}>Fixtures</span>
+      </div>
     )
   }
 }
