@@ -6,13 +6,13 @@ class FixtureList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fixtures: []
+      fixtures: [],
+      url: 'http://api.football-data.org/v1/fixtures/'
     }
   }
-
-  getLeagueFixtures(url) {
+  getLeagueFixtures() {
     $.ajax({
-      url: url,
+      url: this.state.url,
       beforeSend: (xhr) => {
         xhr.setRequestHeader('X-Auth-Token', apiKey);
       }
@@ -22,8 +22,13 @@ class FixtureList extends React.Component {
     });
   };
 
+  componentWillMount() {
+    if(this.props.location.query.leaguesFixturesURL) {
+      this.setState({ url: this.props.location.query.leaguesFixturesURL });
+    };
+  }
   componentDidMount() {
-    this.getLeagueFixtures(this.props.location.query.leaguesFixturesURL)
+    this.getLeagueFixtures();
   };
 
   render() {

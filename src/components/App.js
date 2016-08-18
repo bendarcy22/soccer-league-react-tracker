@@ -1,6 +1,4 @@
 import React from 'react';
-import LeagueList from './LeagueList';
-import TeamList from './TeamList';
 import { IndexLink, Link } from 'react-router';
 
 const App = props => {
@@ -15,6 +13,7 @@ const App = props => {
             <ul className="nav navbar-nav">
               <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
               <li><Link to="/leagues">Leagues</Link></li>
+              <li><Link to="/fixtures">Fixtures</Link></li>
             </ul>
           </div>
         </div>

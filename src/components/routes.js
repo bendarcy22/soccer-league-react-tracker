@@ -13,6 +13,7 @@ module.exports = (
     <Route path="leagues" component={LeagueList}/>
     <Route path=":league/teams" component={TeamList}/>
     <Route path=":league/fixtures" component={FixtureList}/>
+    <Route path="fixtures" component={FixtureList}/>
     <Route path=":team/players" component={PlayerList}/>
   </Route>
 )

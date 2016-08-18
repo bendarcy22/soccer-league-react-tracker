@@ -5,7 +5,7 @@ import apiKey from './apiKey';
 class Fixture extends React.Component {
   constructor(props) {
     super(props);
-  }
+  };
 
   render() {
     const {awayTeamName, homeTeamName, date, result } = this.props;
