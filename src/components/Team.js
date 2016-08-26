@@ -12,7 +12,7 @@ class Team extends React.Component {
   onTeamClick() {
     this.context.router.push({
       pathname: `/${this.props.code}/players`,
-      query: {
+      state: {
         teamsPlayersURL: this.props._links.players.href,
         name: this.props.name
       }

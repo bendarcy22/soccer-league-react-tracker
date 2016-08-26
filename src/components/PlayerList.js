@@ -23,7 +23,7 @@ class PlayerList extends React.Component {
   }
 
   componentDidMount() {
-    this.getTeamPlayers(this.props.location.query.teamsPlayersURL);
+    this.getTeamPlayers(this.props.location.state.teamsPlayersURL);
   }
 
   render() {
@@ -39,7 +39,7 @@ class PlayerList extends React.Component {
 
     return (
       <div>
-        <h1>{this.props.location.query.name}</h1>
+        <h1>{this.props.location.state.name}</h1>
         <ul>
           {players}
         </ul>

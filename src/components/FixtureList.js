@@ -23,11 +23,17 @@ class FixtureList extends React.Component {
   };
 
   componentWillMount() {
-    if(this.props.location.query.leaguesFixturesURL) {
-      this.setState({ url: this.props.location.query.leaguesFixturesURL });
+    if(this.props.location.state) {
+      this.setState({ url: this.props.location.state.leaguesFixturesURL });
     };
-  }
+  };
   componentDidMount() {
+    this.getLeagueFixtures();
+  };
+  componentWillReceiveProps() {
+    this.setState({ url:'http://api.football-data.org/v1/fixtures/' });
+  };
+  componentWillUpdate() {
     this.getLeagueFixtures();
   };
 
@@ -40,11 +46,14 @@ class FixtureList extends React.Component {
         />
       );
     });
+    let caption = "All Fixtures"
+    if (this.props.location.state) {
+      caption = "Fixtures for " + this.props.location.state.caption
+    };
 
     return (
       <div>
-        <h1>{this.props.location.query.caption}</h1>
-        <h3>Fixtures</h3>
+        <h3>{caption}</h3>
         <ul>
           {fixtures}
         </ul>

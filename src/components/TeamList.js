@@ -23,7 +23,7 @@ class TeamList extends React.Component {
   };
 
   componentDidMount() {
-    this.getLeagueTeams(this.props.location.query.leaguesTeamsURL)
+    this.getLeagueTeams(this.props.location.state.leaguesTeamsURL)
   };
 
   render() {
@@ -38,7 +38,7 @@ class TeamList extends React.Component {
 
     return (
       <div>
-        <h1>{this.props.location.query.caption}</h1>
+        <h1>{this.props.location.state.caption}</h1>
         <h3>Teams</h3>
         <ul>
           {teams}

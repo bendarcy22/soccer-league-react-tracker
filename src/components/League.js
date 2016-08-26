@@ -13,7 +13,7 @@ class League extends React.Component {
   onLeagueClick() {
     this.context.router.push({
       pathname: `/${this.props.id}/teams`,
-      query: {
+      state: {
         leaguesTeamsURL: this.props._links.teams.href,
         caption: this.props.caption
       }
@@ -22,7 +22,7 @@ class League extends React.Component {
   onFixtureClick() {
     this.context.router.push({
       pathname: `/${this.props.id}/fixtures`,
-      query: {
+      state: {
         leaguesFixturesURL: this.props._links.fixtures.href,
         caption: this.props.caption
       }
